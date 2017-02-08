@@ -1,6 +1,8 @@
 # generator-homey [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Code Climate][codeclimate-image]][codeclimate-url]
 > Homey App generator
 
+This generator allow you to create a basic homey app structure ready to deploy with permissions, category. It also let you generate drivers for a generated app.
+
 ## Installation
 
 First, install [Yeoman](http://yeoman.io) and generator-homey using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
