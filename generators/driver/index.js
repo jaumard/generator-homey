@@ -2,9 +2,9 @@
 const Generator = require('yeoman-generator')
 const chalk = require('chalk')
 const yosay = require('yosay')
-const path = require('path')
+const fs = require('fs')
 
-module.exports = class HomeyGenerator extends Generator {
+module.exports = class HomeyDriverGenerator extends Generator {
   constructor(...args) {
     super(...args)
     this.argument('id', {
@@ -14,10 +14,13 @@ module.exports = class HomeyGenerator extends Generator {
     })
   }
 
-  prompting() {
-    if (!this.options.id) {
-      this.options.id = this.env.cwd.split(path.sep).pop()
+  initializing() {
+    if (!fs.existsSync('app.json')) {
+      throw new Error('You\'re not under a homey app folder !')
     }
+  }
+
+  prompting() {
     // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the awe-inspiring ' + chalk.red('generator-homey') + ' app generator!'
@@ -26,6 +29,7 @@ module.exports = class HomeyGenerator extends Generator {
     const prompts = [{
       name: 'name',
       message: 'What is the name of your driver ?',
+      default: this.options.id,
       required: true
     }, {
       name: 'driverClass',
@@ -50,7 +54,7 @@ module.exports = class HomeyGenerator extends Generator {
         'socket',
         'zwavecontroller'
       ],
-      defaults: 'other'
+      default: 'other'
     }]
 
     return this.prompt(prompts).then(function (props) {

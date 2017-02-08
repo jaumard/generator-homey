@@ -14,6 +14,13 @@ Then generate your new project:
 
 ```bash
 yo homey
+//or 
+yo homey com.homey.hello
+```
+
+You can also generate new driver to your homey app like this:
+```bash
+yo homey:driver driverId
 ```
 
 ## Getting To Know Yeoman

@@ -11,7 +11,6 @@ describe('generator-homey:driver', function () {
       .inTmpDir(function (dir) {
         const done = this.async() // `this` is the RunContext object.
         helpers.run(path.join(__dirname, '../generators/app'))
-          .withArguments('com.homey.test')
           .withPrompts({name: 'test', description: 'test description', version: '0.0.1', compatibility: '0.x || 1.x'})
           .toPromise().then(done).catch(done)
       })
@@ -31,7 +30,6 @@ describe('generator-homey:driver', function () {
 
   it('should populate app.json correctly', function () {
     assert.jsonFileContent('app.json', {
-      'id': 'com.homey.test',
       'version': '0.0.1',
       'compatibility': '0.x || 1.x',
       'name': {

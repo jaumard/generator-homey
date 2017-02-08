@@ -8,7 +8,6 @@ describe('generator-homey:app', function () {
   describe('with settings', function () {
     before(function () {
       return helpers.run(path.join(__dirname, '../generators/app'))
-        .withArguments('com.homey.test')
         .withPrompts({
           name: 'test',
           description: 'test description',
@@ -37,7 +36,6 @@ describe('generator-homey:app', function () {
 
     it('should populate app.json correctly', function () {
       assert.jsonFileContent('app.json', {
-        'id': 'com.homey.test',
         'version': '0.0.1',
         'compatibility': '0.x || 1.x',
         'name': {
@@ -75,6 +73,40 @@ describe('generator-homey:app', function () {
 
     it('should doesn\'t create settings', function () {
       assert.noFile('settings/index.html')
+    })
+  })
+
+  describe('with id argument', function () {
+    before(function () {
+      return helpers.run(path.join(__dirname, '../generators/app'))
+        .withArguments('com.homey.hello')
+        .withPrompts({
+          name: 'test',
+          description: 'test description',
+          withSettings: true,
+          category: 'lights',
+          permissions: [],
+          version: '0.0.1',
+          compatibility: '0.x || 1.x'
+        })
+        .toPromise()
+    })
+
+    it('should populate app.json correctly', function () {
+      assert.jsonFileContent('com.homey.hello/app.json', {
+        'id': 'com.homey.hello',
+        'version': '0.0.1',
+        'compatibility': '0.x || 1.x',
+        'name': {
+          'en': 'test'
+        },
+        'category': 'lights',
+        'description': {
+          'en': 'test description'
+        },
+        'drivers': [],
+        'permissions': []
+      })
     })
   })
 })

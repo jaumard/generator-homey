@@ -15,7 +15,9 @@ module.exports = class HomeyGenerator extends Generator {
   }
 
   prompting() {
+    this.options.needRootFolder = true
     if (!this.options.id) {
+      this.options.needRootFolder = false
       this.options.id = this.env.cwd.split(path.sep).pop()
     }
     // Have Yeoman greet the user.
@@ -26,12 +28,14 @@ module.exports = class HomeyGenerator extends Generator {
     const prompts = [{
       name: 'name',
       message: 'What is the name of your app ?',
+      default: this.options.id.split('.').pop(),
       required: true
     }, {
       name: 'description',
       message: 'What is the description of your app ?'
     }, {
       name: 'category',
+      message: 'What is the category of your app ?',
       type: 'list',
       choices: [
         'lights',
@@ -60,15 +64,15 @@ module.exports = class HomeyGenerator extends Generator {
         'homey:wireless:zwave',
         'homey:wireless:nfc'
       ],
-      message: 'What is the description of your app ?'
+      message: 'Choose permissions needed for your app ?'
     }, {
       name: 'version',
       message: 'What is the version of your app ?',
-      defaults: '0.0.1'
+      default: '0.0.1'
     }, {
       name: 'compatibility',
       message: 'What is the compatibility version of your app ?',
-      defaults: '0.x || 1.x'
+      default: '0.x || 1.x'
     }, {
       type: 'confirm',
       name: 'withSettings',
@@ -83,39 +87,40 @@ module.exports = class HomeyGenerator extends Generator {
   }
 
   writing() {
+    const root = this.options.needRootFolder ? this.options.id + '/' : ''
     this.fs.copy(
       this.templatePath('app.js'),
-      this.destinationPath('app.js')
+      this.destinationPath(root + 'app.js')
     )
     this.props.id = this.options.id
-    if (this.props.permissions) {
-      this.props.permissions = this.props.permissions.join(', ')
+    if (this.props.permissions && this.props.permissions.length > 0) {
+      this.props.permissions = '\'' + this.props.permissions.join('\', \'') + '\''
     }
     this.fs.copyTpl(
       this.templatePath('app.json'),
-      this.destinationPath('app.json'),
+      this.destinationPath(root + 'app.json'),
       this.props
     )
     this.fs.copy(
       this.templatePath('README.md'),
-      this.destinationPath('README.md')
+      this.destinationPath(root + 'README.md')
     )
     this.fs.copy(
       this.templatePath('assets'),
-      this.destinationPath('assets')
+      this.destinationPath(root + 'assets')
     )
     this.fs.copy(
       this.templatePath('drivers/.gitkeep'),
-      this.destinationPath('drivers/.gitkeep')
+      this.destinationPath(root + 'drivers/.gitkeep')
     )
     this.fs.copy(
       this.templatePath('locales/en.json'),
-      this.destinationPath('locales/en.json')
+      this.destinationPath(root + 'locales/en.json')
     )
     if (this.props.withSettings) {
       this.fs.copy(
         this.templatePath('settings/index.html'),
-        this.destinationPath('settings/index.html')
+        this.destinationPath(root + 'settings/index.html')
       )
     }
   }
