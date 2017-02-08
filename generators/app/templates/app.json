@@ -1,0 +1,21 @@
+{
+  "id": "<%= id %>",
+  "version": "<%= version %>",
+  "compatibility": "<%= compatibility %>",
+  "name": {
+    "en": "<%= name %>"
+  },
+  "description": {
+    "en": "<%= description %>"
+  },
+  "category": "<%= category %>",
+  "drivers": [],
+  "permissions": [
+    <
+    %
+    =
+  permissions
+  %
+  >
+]
+}
