@@ -1,6 +1,20 @@
 language: node_js
 node_js:
-  - v7
-  - v6
-  - v5
-  - v4
+- v7
+- v6
+- v5
+- v4
+os:
+- linux
+- osx
+notifications:
+  email: true
+deploy:
+  provider: npm
+  email: jimmy.aumard@gmail.com
+  api_key:
+    secure: nQ2kdE59OpBuke+uNESXd4kPYOl1W0bMZWQmY+Ja8qgRnLAPSUuoK7pVxVNjFlwZBI49qM813Lo4eSHhezRENA4fk3xOg8QcQ3H1usMGB6gcQ6D/5i+Elfculhs87lNqd1TUkfSDUhjwznQZxPUGPBImXjXLWPkl1synj0IzgN96cKeqSP27gjaIVp9/F3EUVlQ5D3AztHwUQBHXiMjnlsriRTz3flTMShGiJpYOron2lf745lBlJMTQPRDmP4/H4iyblcdsk4JUNWuAq08D7/cR95H90fWn2OVsFkg+H4TzVGxFSBuZQgkmM1orI8itVzlciSAt/JcdeIDJq0J/dpLvMcXhZ5Qw5x/XYcHTIVEzvmbEifIr7XE2JQfM+UtEoGJo65AJlRabuRD9D5uvNWu9pZU3ZnO/Imrm0ujUc1YzcV6e2fE5dG1iu3pyEvaDsoyb4KxmtMrEHx8iCDdlbIQ7tY5VOt5lO/yGfdR4Shvzk4wjLLljm+A0ZuRb0j8TTRat/u/n6ho707r+yiavMSHOHnFkBLiJqWw5FuUhFFmfvnJOlVGfXwd2L98/0ppg7ERY6FoTiIX57nNJKdONChM/RWCztCMVmxGQrFwvbSR/PY0gOnBUjE9/HflK15C+Bc79O3LZshy4XlQO0dr+XM8uu89Y3MH1i2RRsqSmYj0=
+  on:
+    tags: true
+    repo: jaumard/generator-homey
+    node: v6
