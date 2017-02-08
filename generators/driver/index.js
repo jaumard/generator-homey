@@ -5,8 +5,8 @@ const yosay = require('yosay')
 const fs = require('fs')
 
 module.exports = class HomeyDriverGenerator extends Generator {
-  constructor(...args) {
-    super(...args)
+  constructor(args, opts) {
+    super(args, opts)
     this.argument('id', {
       description: 'Required name for your app\' driver',
       type: String,

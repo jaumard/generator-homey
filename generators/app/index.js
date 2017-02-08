@@ -5,8 +5,8 @@ const yosay = require('yosay')
 const path = require('path')
 
 module.exports = class HomeyGenerator extends Generator {
-  constructor(...args) {
-    super(...args)
+  constructor(args, opts) {
+    super(args, opts)
     this.argument('id', {
       description: 'Optional id for your Homey app',
       type: String,
