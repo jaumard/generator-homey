@@ -1,4 +1,4 @@
-# generator-homey [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-homey [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Code Climate][codeclimate-image]][codeclimate-url]
 > Homey App generator
 
 ## Installation
@@ -41,5 +41,5 @@ MIT © [jaumard](https://github.com/jaumard)
 [travis-url]: https://travis-ci.org/jaumard/generator-homey
 [daviddm-image]: https://david-dm.org/jaumard/generator-homey.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/jaumard/generator-homey
-[coveralls-image]: https://coveralls.io/repos/jaumard/generator-homey/badge.svg
-[coveralls-url]: https://coveralls.io/r/jaumard/generator-homey
+[codeclimate-image]: https://img.shields.io/codeclimate/github/jaumard/generator-homey.svg?style=flat-square
+[codeclimate-url]: https://codeclimate.com/github/jaumard/generator-homey
