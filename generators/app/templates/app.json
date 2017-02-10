@@ -10,12 +10,5 @@
   },
   "category": "<%= category %>",
   "drivers": [],
-  "permissions": [
-    <
-    %
-    -
-  permissions
-  %
-  >
-]
+  "permissions": [<%- permissions %>]
 }
