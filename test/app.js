@@ -5,6 +5,38 @@ const helpers = require('yeoman-test')
 
 describe('generator-homey:app', function () {
 
+  describe('with permissions', function () {
+    before(function () {
+      return helpers.run(path.join(__dirname, '../generators/app'))
+        .withPrompts({
+          name: 'test',
+          description: 'test description',
+          withSettings: true,
+          category: 'lights',
+          permissions: ['homey:manager:speech-input', 'homey:manager:speech-output'],
+          version: '0.0.1',
+          compatibility: '0.x || 1.x'
+        })
+        .toPromise()
+    })
+
+    it('should populate app.json correctly', function () {
+      assert.jsonFileContent('app.json', {
+        'version': '0.0.1',
+        'compatibility': '0.x || 1.x',
+        'name': {
+          'en': 'test'
+        },
+        'category': 'lights',
+        'description': {
+          'en': 'test description'
+        },
+        'drivers': [],
+        'permissions': ['homey:manager:speech-input', 'homey:manager:speech-output']
+      })
+    })
+  })
+
   describe('with settings', function () {
     before(function () {
       return helpers.run(path.join(__dirname, '../generators/app'))

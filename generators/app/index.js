@@ -94,7 +94,7 @@ module.exports = class HomeyGenerator extends Generator {
     )
     this.props.id = this.options.id
     if (this.props.permissions && this.props.permissions.length > 0) {
-      this.props.permissions = '\'' + this.props.permissions.join('\', \'') + '\''
+      this.props.permissions = '"' + this.props.permissions.join('", "') + '"'
     }
     this.fs.copyTpl(
       this.templatePath('app.json'),
